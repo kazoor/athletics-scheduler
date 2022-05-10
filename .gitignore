@@ -104,3 +104,9 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 /*.iml
+*.iml
+*.iml
+*.iml
+*.iml
+Server/Server.iml
+Client/Client.iml
