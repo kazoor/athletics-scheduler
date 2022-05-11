@@ -10,6 +10,7 @@ public class ClientSocket {
 
     // Boolean that can stop the
     private final boolean m_Stop = false;
+    
     // Data streams.
     private DataInputStream m_DataInputStream = null;
 
