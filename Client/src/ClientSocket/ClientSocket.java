@@ -1,5 +1,4 @@
 package ClientSocket;
-
 import java.net.*;
 import java.io.*;
 
@@ -8,12 +7,8 @@ public class ClientSocket {
     private String m_Address = null;
     private int m_Port = 0;
 
-    // Boolean that can stop the
-    private final boolean m_Stop = false;
-    
     // Data streams.
     private DataInputStream m_DataInputStream = null;
-
     private DataOutputStream m_DataOutputStream = null;
 
     public ClientSocket(String Address, int Port) {
@@ -29,6 +24,8 @@ public class ClientSocket {
 
     public void CloseConnecion() throws IOException {
         m_Socket.close();
+        m_DataInputStream = null;
+        m_DataOutputStream = null;
     }
 
     private void SetDataInputStream(InputStream stream) {
@@ -39,30 +36,27 @@ public class ClientSocket {
         m_DataOutputStream = new DataOutputStream(stream);
     }
 
-    // the socket will be able to send a message at any time as m_DataOutPutstream is valid.
+    // the socket is be able to send a message at any time as m_DataOutPutstream is valid.
     public void Send(String message) {
-        if (m_DataOutputStream == null)
-            return;
-
         try {
+            assert m_DataOutputStream != null;
             m_DataOutputStream.writeUTF(message);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // the socket will be able to read a message at any time as m_DataInputPutstream is valid
+    // the socket is be able to read a message at any time as m_DataInputPutstream is valid
     public String ReadString() {
-        if(m_DataInputStream != null) {
             try {
+                assert m_DataInputStream != null;
                 return m_DataInputStream.readUTF();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
-        return null;
     }
 
+    // Function to start the main loop of the socket, will keep on running until the close function is called.
     public void Run() {
         System.out.println("Attempting to connect to " + m_Address + ":" + m_Port);
         try {
