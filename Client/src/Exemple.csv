@@ -1,5 +1,5 @@
-name,age,speed
-sam,22,fastboy
-andre,21,fastboy
-kevin,21,slowboy
-khalid,29,slowboy
+"name","age","speed"
+"sam","22","fastboy"
+"andre","21","fastboy"
+"kevin","21","slowboy"
+"khalid","29","slowboy"
