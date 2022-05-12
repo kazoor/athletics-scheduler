@@ -12,11 +12,10 @@ public class CSVparser {
         String[] storing;
         try (CSVReader reader = new CSVReader(new FileReader("Client/src/Exemple.csv"))) {
             while ((storing = reader.readNext()) != null) {
-                System.out.println(storing[0] + storing[1] + storing[2]);
+                System.out.println(storing[0] + " " + storing[1] + " " + storing[2]);
             }
         }
     }
-
   void run(){
         try {
             parser();
