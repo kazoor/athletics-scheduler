@@ -1,6 +1,10 @@
 package dataclasses;
 
+
 public class ScheduleEntry {
-    int EntryList[];
+    Athlete EntryList[];
+    TimeSlot EntryList[];
+    Discipline EntryList[];
+    Entry EntryList[]; //Created a list for every class.
     public EntryList() {}
 }

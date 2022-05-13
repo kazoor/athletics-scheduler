@@ -5,10 +5,9 @@ public class Athlete {
     String Gender;
     int Age;
     Entry LastCompetition;
-    public Athlete (String name, String gender, int age, Entry lastCompetition) {
+    public Athlete (String name, String gender, int age) {
         Name = name;
         Gender = gender;
         Age = age;
-        LastCompetition = lastCompetition;
     }
 }
