@@ -1,3 +1,5 @@
+package dataclasses;
+
 public class Athlete {
     String Name;
     String Gender;
