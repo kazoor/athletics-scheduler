@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 
 public class ClientInput {
-    public static void main(String args[]) {
+    public static void Menu() {
         System.out.println("Working!");
         int choice;
         String fileName;
@@ -39,6 +39,13 @@ public class ClientInput {
                     System.out.println("Lorem");
                 }
             }
+        }
+    }
+    void Run(){
+        try{
+            Menu();
+        }catch(Exception e){
+            throw new RuntimeException(e);
         }
     }
 }
