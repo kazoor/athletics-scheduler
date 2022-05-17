@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 public class TimeSlot {
     String Name;
     String StationType_;
+    Entry
     public LocalDateTime StartTime;
     public LocalDateTime EndTime;
 
