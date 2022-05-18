@@ -1,14 +1,8 @@
 package Client;
 
-import CSVParser.CSVParser;
-import com.opencsv.exceptions.CsvException;
-
-import java.io.IOException;
-
 public class Client {
     // Client entrypoint.
-    public static void main(String args[]) throws IOException, CsvException {
+    public static void main(String args[]) {
         System.out.println("Client running!");
-        CSVParser.parser();
     }
 }
