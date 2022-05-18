@@ -1,4 +1,4 @@
-package Dataclasses;
+package DataClasses;
 import java.time.LocalDateTime;
 
 public class TimeSlot {
@@ -9,6 +9,5 @@ public class TimeSlot {
     public TimeSlot (LocalDateTime startTime, LocalDateTime endTime) {
         m_StartTime = startTime;
         m_EndTime = endTime;
-
-}
+    }
 }

@@ -1,4 +1,4 @@
-package Dataclasses;
+package DataClasses;
 
 public class Athlete {
     String m_Club;

@@ -1,4 +1,4 @@
-package Dataclasses;
+package DataClasses;
 import java.util.ArrayList;
 
 public class Entry {
