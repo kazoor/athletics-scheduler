@@ -1,4 +1,4 @@
-package dataclasses;
+package Dataclasses;
 import java.util.ArrayList;
 
 public class ScheduleEntries {

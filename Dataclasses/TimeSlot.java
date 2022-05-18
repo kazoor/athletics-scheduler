@@ -1,4 +1,4 @@
-package dataclasses;
+package Dataclasses;
 import java.time.LocalDateTime;
 
 public class TimeSlot {

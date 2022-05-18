@@ -1,4 +1,4 @@
-package dataclasses;
+package Dataclasses;
 
 public class Station {
     String m_Name;

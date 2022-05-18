@@ -1,4 +1,4 @@
-package dataclasses;
+package Dataclasses;
 
 public class Discipline {
     String m_Name;
