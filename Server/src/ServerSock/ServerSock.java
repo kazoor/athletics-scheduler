@@ -12,6 +12,7 @@ public class ServerSock {
 
     // Data streams.
     private DataInputStream m_DataInputStream = null;
+
     private DataOutputStream m_DataOutputStream = null;
 
     public ServerSock(int Port) {
