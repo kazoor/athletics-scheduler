@@ -1,8 +1,8 @@
 package dataclasses;
 
 public class Discipline {
-    String Name;
+    String m_Name;
     public Discipline(String name) {
-         Name = name;
+         m_Name = name;
     }
 }

@@ -1,18 +1,18 @@
 package dataclasses;
 
 public class Athlete {
-    String Club;
-    String Name;
-    String Surname;
-    String Sex;
-    int Age;
-    Entry LastCompetition;
+    String m_Club;
+    String m_Name;
+    String m_Surname;
+    String m_Sex;
+    int m_Age;
+    Entry m_LastCompetition;
     public Athlete (String club, String name, String surname, String sex, int age, Entry lastCompetition) {
-        Club = club;
-        Name = name;
-        Surname = surname;
-        Sex = sex;
-        Age = age;
-        LastCompetition = lastCompetition;
+        m_Club = club;
+        m_Name = name;
+        m_Surname = surname;
+        m_Sex = sex;
+        m_Age = age;
+        m_LastCompetition = lastCompetition;
     }
 }

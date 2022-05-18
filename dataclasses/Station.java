@@ -1,8 +1,8 @@
 package dataclasses;
 
 public class Station {
-    String Name;
+    String m_Name;
     public Station(String name) {
-        name = name;
+        m_Name = name;
     }
 }
