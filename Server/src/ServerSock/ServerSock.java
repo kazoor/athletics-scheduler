@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 
 public class ServerSock {
+
     private Socket m_Socket = null;
 
     private ServerSocket m_ServerSocket = null;
