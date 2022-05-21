@@ -1,12 +1,10 @@
 package CSVParser;
 
+import DataClasses.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.enums.CSVReaderNullFieldIndicator;
-import DataClasses.Athlete;
-import DataClasses.Entry;
-import DataClasses.Discipline;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,37 +25,37 @@ public class CSVParser {
     static ArrayList<Athlete> m_ThrowingShot = new ArrayList<Athlete>();
 
     public static void SortingAthlete(Athlete ath){
-        if (!Objects.equals(ath.m_Running60, "null")){
+        if (!Objects.equals(ath.GetRunning60(), "null")){
             m_Running60.add(ath);
         }
-        if (!Objects.equals(ath.m_Running200, "null")){
+        if (!Objects.equals(ath.GetRunning200(), "null")){
             m_Running200.add(ath);
         }
-        if (!Objects.equals(ath.m_Running800, "null")){
+        if (!Objects.equals(ath.GetRunning800(), "null")){
             m_Running800.add(ath);
         }
-        if (!Objects.equals(ath.m_Running1500, "null")){
+        if (!Objects.equals(ath.GetRunning1500(), "null")){
             m_Running1500.add(ath);
         }
-        if (!Objects.equals(ath.m_Running3000, "null")){
+        if (!Objects.equals(ath.GetRunning3000(), "null")){
             m_Running3000.add(ath);
         }
-        if (!Objects.equals(ath.m_RunningHurdles, "null")){
+        if (!Objects.equals(ath.GetRunningHurdles(), "null")){
             m_RunningHurdles.add(ath);
         }
-        if (!Objects.equals(ath.m_JumpingLong, "null")){
+        if (!Objects.equals(ath.GetJumpingLong(), "null")){
             m_JumpingLong.add(ath);
         }
-        if (!Objects.equals(ath.m_JumpingTriple, "null")){
+        if (!Objects.equals(ath.GetJumpingTriple(), "null")){
             m_JumpingTriple.add(ath);
         }
-        if (!Objects.equals(ath.m_JumpingHigh, "null")){
+        if (!Objects.equals(ath.GetJumpingHigh(), "null")){
             m_JumpingHigh.add(ath);
         }
-        if (!Objects.equals(ath.m_JumpingPole, "null")){
+        if (!Objects.equals(ath.GetJumpingPole(), "null")){
             m_JumpingPole.add(ath);
         }
-        if (!Objects.equals(ath.m_ThrowingShot, "null")){
+        if (!Objects.equals(ath.GetThrowingShot(), "null")){
             m_ThrowingShot.add(ath);
         }
     }
@@ -86,19 +84,24 @@ public class CSVParser {
     Discipline Discipline10 = new Discipline("pole jumping");
     Discipline Discipline11 = new Discipline("Shot throwing");
 
-    Entry Running60 = new Entry(m_Running60,Discipline1,null,null);
-    Entry Running200 = new Entry(m_Running200,Discipline2,null,null);
-    Entry Running800 = new Entry(m_Running800,Discipline3,null,null);
-    Entry Running1500 = new Entry(m_Running1500,Discipline4,null,null);
-    Entry Running3000 = new Entry(m_Running3000,Discipline5,null,null);
-    Entry RunningHurdles = new Entry(m_RunningHurdles,Discipline6,null,null);
-    Entry JumpingLong = new Entry(m_JumpingLong,Discipline7,null,null);
-    Entry JumpingTriple = new Entry(m_JumpingTriple,Discipline8,null,null);
-    Entry JumpingHigh = new Entry(m_JumpingHigh,Discipline9,null,null);
-    Entry JumpingPole = new Entry(m_JumpingPole,Discipline10,null,null);
-    Entry ThrowingShot = new Entry(m_ThrowingShot,Discipline11,null,null);
+    public ScheduleEntries GetScheduleEntries() {
+        ScheduleEntries Entries = new ScheduleEntries();
+        Entries.m_EntryList.add(new Entry(m_Running60,Discipline1, new TimeSlot(0, 0),  new Station(1)));
+        Entries.m_EntryList.add(new Entry(m_Running200,Discipline2,new TimeSlot(0, 0), new Station(2)));
+        Entries.m_EntryList.add(new Entry(m_Running800,Discipline3,new TimeSlot(0, 0), new Station(3)));
+        Entries.m_EntryList.add(new Entry(m_Running1500,Discipline4,new TimeSlot(0, 0), new Station(4)));
+        Entries.m_EntryList.add(new Entry(m_Running3000,Discipline5,new TimeSlot(0, 0), new Station(5)));
+        Entries.m_EntryList.add(new Entry(m_RunningHurdles,Discipline6,new TimeSlot(0, 0), new Station(6)));
+        Entries.m_EntryList.add(new Entry(m_JumpingLong,Discipline7,new TimeSlot(0, 0), new Station(7)));
+        Entries.m_EntryList.add(new Entry(m_JumpingTriple,Discipline8,new TimeSlot(0, 0), new Station(8)));
+        Entries.m_EntryList.add(new Entry(m_JumpingHigh,Discipline9,new TimeSlot(0, 0), new Station(9)));
+        Entries.m_EntryList.add(new Entry(m_JumpingPole,Discipline10,new TimeSlot(0, 0), new Station(10)));
+        Entries.m_EntryList.add(new Entry(m_ThrowingShot,Discipline11,new TimeSlot(0, 0), new Station(11)));
 
-    void run(){
+        return Entries;
+    }
+
+    public static void run(){
         try {
             parser();
         } catch (Exception e) {
