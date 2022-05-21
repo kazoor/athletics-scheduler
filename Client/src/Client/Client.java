@@ -18,7 +18,7 @@ public class Client {
         Entries.add(parser.GetScheduleEntries());
 
         Algorithm Alg = new Algorithm(Entries);
-        Population Pop = new Population(9, Entries).SortScheduleByQuality();
+        Population Pop = new Population(100, Entries).SortScheduleByQuality();
 
 
         Population Modified = new Population(Pop.GetSchedules().size(), Entries);
@@ -31,8 +31,9 @@ public class Client {
        for(int i = 0; i < Modified.GetSchedules().get(0).GetSchedule().get(0).GetEntryList().size(); ++i) {
             System.out.println("-------------------------------------------");
             System.out.print(Modified.GetSchedules().get(0).GetSchedule().get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() + " - ");
-            System.out.print(Modified.GetSchedules().get(0).GetSchedule().get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() + "\n");
+            System.out.print(Modified.GetSchedules().get(0).GetSchedule().get(0).GetEntryList().get(i).GetTimeslot().GetEndTime() + "\n");
             System.out.println(Modified.GetSchedules().get(0).GetSchedule().get(0).GetEntryList().get(i).GetDiscipline().GetName());
+            System.out.println("ID: " + Modified.GetSchedules().get(0).GetSchedule().get(0).GetEntryList().get(i).GetStation().GetId());
             System.out.println("-------------------------------------------");
         }
         System.out.println("Fitness: " + Modified.GetSchedules().get(0).GetFitness() +  " Found at generation: " + Generation);

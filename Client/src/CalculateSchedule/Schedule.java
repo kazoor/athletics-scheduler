@@ -31,11 +31,13 @@ public class Schedule {
     }
 
     public Schedule Initialize() {
+        Random R1 = new Random();
+        Random R2 = new Random();
         for(int i = 0; i < m_Schedule.get(0).GetEntryList().size(); ++i) {
-            Random R1 = new Random();
-            Random R2 = new Random();
-            m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().SetStartTime(R1.nextInt(TIME_CONSTRAINT_HI-TIME_CONSTRAINT_LO) + TIME_CONSTRAINT_LO);
-            m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().SetEndTime(R2.nextInt(TIME_CONSTRAINT_HI-TIME_CONSTRAINT_LO) + TIME_CONSTRAINT_LO);
+            int Random1 = R1.nextInt(TIME_CONSTRAINT_HI - TIME_CONSTRAINT_LO) + TIME_CONSTRAINT_LO;
+            int Random2 = R2.nextInt(TIME_CONSTRAINT_HI - TIME_CONSTRAINT_LO) + TIME_CONSTRAINT_LO;
+            m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().SetStartTime(Random1);
+            m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().SetEndTime(Random2);
         }
         return this;
     }
@@ -51,28 +53,39 @@ public class Schedule {
     private double CalculateFitness() {
         m_Conflicts = 0;
         for(int i = 0; i < m_Schedule.size(); ++i) {
-            if(m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetStartTime() < TIME_CONSTRAINT_LO)
+            if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() < TIME_CONSTRAINT_LO)
                 m_Conflicts++;
 
-            if(m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetEndTime() > TIME_CONSTRAINT_HI)
+            if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime() > TIME_CONSTRAINT_HI)
                 m_Conflicts++;
 
-           /* if((m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetEndTime() - m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetStartTime()) <= 1)
+           if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime() - m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() < 1)
                 m_Conflicts++;
 
-            if(m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetStartTime() == m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetEndTime())
+            if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime() - m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() > 1)
+                m_Conflicts++;
+
+            if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() == m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime())
+                m_Conflicts++;
+
+            if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() > m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime())
                 m_Conflicts++;
 
             for(int j = i + 1; j < m_Schedule.size(); ++j) {
-                if(m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetStartTime() == m_Schedule.get(j).GetEntryList().get(j).GetTimeslot().GetStartTime()
-                        && m_Schedule.get(i).GetEntryList().get(i).GetStation().GetId() !=  m_Schedule.get(j).GetEntryList().get(j).GetStation().GetId())
+                if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() == m_Schedule.get(0).GetEntryList().get(j).GetTimeslot().GetStartTime()
+                        && m_Schedule.get(0).GetEntryList().get(i).GetStation().GetId() !=  m_Schedule.get(0).GetEntryList().get(j).GetStation().GetId())
                     m_Conflicts++;
 
-                if(m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetStartTime() > m_Schedule.get(j).GetEntryList().get(j).GetTimeslot().GetStartTime()
-                        && m_Schedule.get(i).GetEntryList().get(i).GetTimeslot().GetEndTime() < m_Schedule.get(j).GetEntryList().get(j).GetTimeslot().GetEndTime())
+                if((Math.abs(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime() - m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime())) > 1)
                     m_Conflicts++;
-            }*/
+
+                if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() > m_Schedule.get(0).GetEntryList().get(j).GetTimeslot().GetStartTime() && m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetStartTime() < m_Schedule.get(0).GetEntryList().get(j).GetTimeslot().GetEndTime())
+                    m_Conflicts++;
+
+                if(m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime() < m_Schedule.get(0).GetEntryList().get(j).GetTimeslot().GetEndTime() && m_Schedule.get(0).GetEntryList().get(i).GetTimeslot().GetEndTime() > m_Schedule.get(0).GetEntryList().get(j).GetTimeslot().GetStartTime())
+                    m_Conflicts++;
+            }
         }
-        return 1/(double)(m_Conflicts + 1.0f);
+            return 1/(double)(m_Conflicts + 1.0f);
     }
 }

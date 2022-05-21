@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class Algorithm {
 
     private static final int POP_SIZE = 9;
-    private static double CROSS_RATE = 0.9f;
-    private static double MUTATION_RATE = 0.1f;
-    private static final int SELECTION_SIZE = 3;
+    private static double CROSS_RATE = 0.6f;
+    private static double MUTATION_RATE = 0.27f;
+    private static final int SELECTION_SIZE = 15;
     private static final int FINAL_SCHEDULES = 1;
     private ArrayList<ScheduleEntries> m_Entries;
 
@@ -25,8 +25,8 @@ public class Algorithm {
 
         for(int i = FINAL_SCHEDULES; i < Pop.GetSchedules().size(); ++i) {
             if(Math.random() < CROSS_RATE) {
-                Schedule Sched1 = new Schedule(m_Entries); //GetTournamentPopulation(Pop).SortScheduleByQuality().GetSchedules().get(0);
-                Schedule Sched2 = new Schedule(m_Entries); //GetTournamentPopulation(Pop).SortScheduleByQuality().GetSchedules().get(0);
+                Schedule Sched1 = GetTournamentPopulation(Pop).SortScheduleByQuality().GetSchedules().get(0);
+                Schedule Sched2 = GetTournamentPopulation(Pop).SortScheduleByQuality().GetSchedules().get(0);
 
                 Cross.GetSchedules().set(i, CrossSchedule(Sched1, Sched2));
             } else {
@@ -40,7 +40,7 @@ public class Algorithm {
         Schedule Cross = new Schedule(m_Entries).Initialize();
 
         for(int i = 0; i < Cross.GetSchedule().size(); ++i) {
-            if(Math.random() > 0.5f)
+            if(Math.random() > CROSS_RATE)
                 Cross.GetSchedule().set(i, Sched1.GetSchedule().get(i));
             else
                 Cross.GetSchedule().set(i, Sched2.GetSchedule().get(i));
@@ -59,7 +59,6 @@ public class Algorithm {
         for(int i = FINAL_SCHEDULES; i < Pop.GetSchedules().size(); ++i) {
             Schedules.set(i, MutateSchedule(Pop.GetSchedules().get(i)));
         }
-
         return MutatedPopulation;
     }
 
@@ -78,8 +77,7 @@ public class Algorithm {
         for(int i = 0; i < SELECTION_SIZE; ++i) {
             TournamentPopulation.GetSchedules().set(i, Pop.GetSchedules().get((int)(Math.random() * Pop.GetSchedules().size())));
         }
-
-        return null;
+        return TournamentPopulation;
     }
 
     public Population Evolve(Population Pop) {

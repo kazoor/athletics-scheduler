@@ -81,7 +81,7 @@ public class CSVParser {
     Discipline Discipline7 = new Discipline("Long jumping");
     Discipline Discipline8 = new Discipline("Triple jumping");
     Discipline Discipline9 = new Discipline("High jumping");
-    Discipline Discipline10 = new Discipline("pole jumping");
+    Discipline Discipline10 = new Discipline("Pole jumping");
     Discipline Discipline11 = new Discipline("Shot throwing");
 
     public ScheduleEntries GetScheduleEntries() {
