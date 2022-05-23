@@ -60,9 +60,9 @@ public class CSVParser {
         }
     }
 
-    public static void parser() throws IOException, CsvException {
+    public static void parser(String FilePath) throws IOException, CsvException {
         String[] storing;
-        try (CSVReader reader = new CSVReaderBuilder(new FileReader("Client/src/registration-list.csv"))
+        try (CSVReader reader = new CSVReaderBuilder(new FileReader(FilePath))
                 .withFieldAsNull(CSVReaderNullFieldIndicator.EMPTY_SEPARATORS).build()) {
             while ((storing = reader.readNext()) != null) {
                 Athlete Athlete = new Athlete(storing[0], storing[1], storing[2], storing[3], Integer.parseInt(storing[4]), storing[5], storing[6],
@@ -83,6 +83,7 @@ public class CSVParser {
     Discipline Discipline9 = new Discipline("High jumping");
     Discipline Discipline10 = new Discipline("Pole jumping");
     Discipline Discipline11 = new Discipline("Shot throwing");
+    Discipline Discipline12 = new Discipline("Ceremony");
 
     public ScheduleEntries GetScheduleEntries() {
         ScheduleEntries Entries = new ScheduleEntries();
@@ -97,13 +98,14 @@ public class CSVParser {
         Entries.m_EntryList.add(new Entry(m_JumpingHigh,Discipline9,new TimeSlot(0, 0), new Station(9)));
         Entries.m_EntryList.add(new Entry(m_JumpingPole,Discipline10,new TimeSlot(0, 0), new Station(10)));
         Entries.m_EntryList.add(new Entry(m_ThrowingShot,Discipline11,new TimeSlot(0, 0), new Station(11)));
+        Entries.m_EntryList.add(new Entry(null, Discipline12,new TimeSlot(0, 0), new Station(12)));
 
         return Entries;
     }
 
-    public static void run(){
+    public static void run(String FilePath){
         try {
-            parser();
+            parser(FilePath);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

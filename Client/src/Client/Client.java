@@ -12,7 +12,7 @@ public class Client {
 
         System.out.println("Client running!");
         CSVParser parser = new CSVParser();
-        parser.run();
+        parser.run("Client/src/registration-list.csv");
 
         ArrayList<ScheduleEntries> Entries = new ArrayList<ScheduleEntries>();
         Entries.add(parser.GetScheduleEntries());
@@ -27,6 +27,7 @@ public class Client {
             Modified = Alg.Evolve(Pop);
             ++Generation;
         }
+
 
        for(int i = 0; i < Modified.GetSchedules().get(0).GetSchedule().get(0).GetEntryList().size(); ++i) {
             System.out.println("-------------------------------------------");

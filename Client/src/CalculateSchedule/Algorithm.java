@@ -8,7 +8,7 @@ public class Algorithm {
 
     private static final int POP_SIZE = 9;
     private static double CROSS_RATE = 0.6f;
-    private static double MUTATION_RATE = 0.27f;
+    private static double MUTATION_RATE = 0.1f;
     private static final int SELECTION_SIZE = 15;
     private static final int FINAL_SCHEDULES = 1;
     private ArrayList<ScheduleEntries> m_Entries;
@@ -27,7 +27,6 @@ public class Algorithm {
             if(Math.random() < CROSS_RATE) {
                 Schedule Sched1 = GetTournamentPopulation(Pop).SortScheduleByQuality().GetSchedules().get(0);
                 Schedule Sched2 = GetTournamentPopulation(Pop).SortScheduleByQuality().GetSchedules().get(0);
-
                 Cross.GetSchedules().set(i, CrossSchedule(Sched1, Sched2));
             } else {
                 Cross.GetSchedules().set(i, Pop.GetSchedules().get(i));
