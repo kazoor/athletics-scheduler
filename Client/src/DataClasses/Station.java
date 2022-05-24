@@ -1,8 +1,16 @@
 package DataClasses;
 
 public class Station {
-    String m_Name;
-    public Station(String name) {
-        m_Name = name;
+    public int GetId() {
+        return m_Id;
+    }
+
+    public void SetId(int Id) {
+        this.m_Id = Id;
+    }
+
+    int m_Id;
+    public Station(int Id) {
+        m_Id = Id;
     }
 }
